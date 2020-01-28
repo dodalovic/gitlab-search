@@ -29,9 +29,9 @@ class SearchResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    fun search(@QueryParam("searchTerm") searchTerm: String): Response {
+    fun search(@QueryParam("searchTerm") searchTerm: String, @QueryParam("allProjects") includeAllProjects: Boolean? = false): Response {
         val result = mutableListOf<JsonArray>()
-        var servicesOnly = listOf<JsonObject>()
+        var projectsToBeSearchedThrough = listOf<JsonObject>()
         runBlocking(Dispatchers.IO) {
             val firstPageResponse =
                 gitlabSearchClient.getAllProjects(AllProjectsRequest(apiToken))
@@ -46,11 +46,12 @@ class SearchResource {
             val allGitlabProjects = projectsJobs.awaitAll().toMutableList()
             allGitlabProjects += firstPageProjects
 
-            servicesOnly = (allGitlabProjects.flatMap { it.toList() } as List<JsonObject>).filter {
+            val all = allGitlabProjects.flatMap { it.toList() } as List<JsonObject>
+            projectsToBeSearchedThrough = if (includeAllProjects!!) all else all.filter {
                 it.getString("name").endsWith("-service")
             }
             val searchResultsJobs = mutableListOf<Deferred<JsonArray>>()
-            for (project in servicesOnly) {
+            for (project in projectsToBeSearchedThrough) {
                 searchResultsJobs += async {
                     gitlabSearchClient.searchBySearchTerm(
                         SearchTerm(
@@ -65,7 +66,7 @@ class SearchResource {
         }
         return Response.ok((result.flatMap { it.toList() } as List<JsonObject>).map {
             Json.createObjectBuilder(it)
-                .add("project_name", projectName(it.getInt("project_id"), servicesOnly))
+                .add("project_name", projectName(it.getInt("project_id"), projectsToBeSearchedThrough))
                 .build()
         }).build()
     }
