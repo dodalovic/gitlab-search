@@ -20,6 +20,20 @@ MacOS users can just run:
 ./dist/gitlab-search-1.0.0-darwin-runner -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx
 ```
 
+## Performing search
+
+`API` will be exposed at `http://localhost:8080/search`
+
+Query params: 
+
+* `searchTerm` - mandatory, text you want to search for
+* `allProjects` - optional - search through all the projects (without this param, searches only these projects ending with `-service`)
+
+```
+curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&allProjects=false' \
+  --header 'accept: application/json'
+```
+
 ## Packaging and running the application
 
 The application is packageable using `./mvnw package`.
