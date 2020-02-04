@@ -12,13 +12,16 @@ You can run your application in dev mode that enables live coding using:
 ./mvnw quarkus:dev -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx
 ```
 
-## MacOS users native executable
+## Pre-built native executables
 
-MacOS users can just run:
-
-```
-./dist/gitlab-search-1.0.0-darwin-runner -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx
-```
+* Running MacOS users native executable
+  ```
+  ./dist/gitlab-search-1.0.0-darwin-runner -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx
+  ```
+* Running Linux users native executable
+  ```
+  ./dist/gitlab-search-1.0.0-linux-runner -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx
+  ```
 
 ## Performing search
 
