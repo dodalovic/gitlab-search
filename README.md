@@ -5,6 +5,14 @@ Searches through given Gitlab instance for particular text
 > Requires providing two parameters: 
 > -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx
 
+## Quick run
+
+```
+$ docker run -e GITLAB_API=XXXXXXXXXXXX/api/v4 -e GITLAB_TOKEN=MY_TOKEN_HERE --rm -p 8080:8080 dodalovic/gitlab-search
+
+$ curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&allProjects=true'--header 'accept: application/json' 
+```
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
