@@ -54,13 +54,18 @@ The scope of the project is to simplify searching through (mostly self hosted) i
 ### Run docker image
 
 ```
-docker run -e GITLAB_API=https://YOUR_SERVER_HERE/api/v4 -e GITLAB_TOKEN=XXXXXXXYYYYYYYY --rm -p 8080:8080 dodalovic/gitlab-search
+docker run \
+    -e GITLAB_API=https://YOUR_SERVER_HERE/api/v4 \
+    -e GITLAB_TOKEN=XXXXXXXYYYYYYYY \
+    --rm -p 8080:8080 \
+    dodalovic/gitlab-search
 ```
 
 ### Querying API
 
 ```
-$ curl --url 'http://localhost:8080/search?searchTerm=SOME_ARBITRARY_TEXT'--header 'accept: application/json'
+$ curl --url 'http://localhost:8080/search?searchTerm=SOME_ARBITRARY_TEXT' \
+    --header 'accept: application/json'
 ```
 
 <!-- USAGE EXAMPLES -->
@@ -102,8 +107,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Dusan Odalovic - [@odalinjo](https://twitter.com/odalinjo) - dodalovic@gmail.com
 
 Project Link: [https://github.com/dodalovic/gitlab-search](https://github.com/dodalovic/gitlab-search)
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
