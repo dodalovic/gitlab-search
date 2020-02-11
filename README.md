@@ -5,10 +5,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -41,16 +37,13 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
 * [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+  * [Run docker image](#run-docker-image)
+  * [Querying API](#querying-API)
 * [Usage](#usage)
-* [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
 
 ## About The Project
 
@@ -71,6 +64,7 @@ $ curl --url 'http://localhost:8080/search?searchTerm=SOME_ARBITRARY_TEXT'--head
 ```
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 API will be available via http://localhost:8080/search
