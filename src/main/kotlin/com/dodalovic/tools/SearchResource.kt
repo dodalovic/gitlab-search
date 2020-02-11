@@ -7,12 +7,12 @@ import javax.inject.Inject
 import javax.json.Json
 import javax.json.JsonArray
 import javax.json.JsonObject
-import javax.ws.rs.GET
-import javax.ws.rs.Path
-import javax.ws.rs.Produces
-import javax.ws.rs.QueryParam
+import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
+
+
+const val searchThroughAllProjectsQueryParamValue = "__all__"
 
 @Path("/search")
 class SearchResource {
@@ -26,11 +26,18 @@ class SearchResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    fun search(@QueryParam("searchTerm") searchTerm: String, @QueryParam("allProjects") includeAllProjects: Boolean? = false): Response {
+    fun search(
+        @QueryParam("searchTerm") searchTerm: String, @DefaultValue(searchThroughAllProjectsQueryParamValue) @QueryParam(
+            "pattern"
+        ) projectsSearchPattern: String
+    ): Response {
+        val includeAllProjects =
+            projectsSearchPattern == searchThroughAllProjectsQueryParamValue
+        println("Searching through ${if (includeAllProjects) "all" else "services"} projects")
         val result = mutableListOf<JsonArray>()
         val allProjects = mutableListOf<JsonObject>()
         runBlocking(Dispatchers.IO) {
-            val firstPageResponse = if (includeAllProjects!!) {
+            val firstPageResponse = if (includeAllProjects) {
                 gitlabProjectsClient.getAllProjects(AllProjectsRequest(apiToken))
             } else {
                 gitlabProjectsClient.searchAllProjectsByName(ProjectsSearch(token = apiToken, search = "-service"))

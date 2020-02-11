@@ -14,7 +14,7 @@ The easiest way is to run publicly available docker image:
 $ docker run -e GITLAB_API=XXXXXXXXXXXX/api/v4 -e GITLAB_TOKEN=MY_TOKEN_HERE --rm -p 8080:8080 dodalovic/gitlab-search
 
 # Use any HTTP client to call search API
-$ curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&allProjects=true'--header 'accept: application/json' 
+$ curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities'--header 'accept: application/json'
 ```
 
 ## Running the application in dev mode
@@ -29,13 +29,15 @@ You can run your application in dev mode that enables live coding using:
 Query params: 
 
 * `searchTerm` - mandatory, text you want to search for
-* `allProjects` - optional - search through all the projects (without this param, searches only these projects ending with `-service`)
+* `pattern` - optional - search through projects matching given pattern
 
 An example call:
 ```
-curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&allProjects=false' \
+curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&pattern=service' \
   --header 'accept: application/json'
 ```
+
+will search through all the projects containing service in their name
 
 ## Packaging and running the application
 The application is packageable using `./mvnw package`.
