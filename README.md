@@ -1,37 +1,81 @@
-# gitlab-search project
-Simple `API` server providing capability to search through given Gitlab instance for any arbitrary text
+<!--
+*** Thanks for checking out this README Template. If you have a suggestion that would
+*** make this better, please fork the repo and create a pull request or simply open
+*** an issue with the tag "enhancement".
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-## Configuration
-`API` requires two configuration parameters, passed as an environment variables:
-* GITLAB_API, for instance https://my.server.here/api/v4
-* GITLAB_TOKEN
-Your [personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html) with the `api` scope. 
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Quick run
-The easiest way is to run publicly available docker image:
+<br />
+<p align="center">
+    <img src="GitLab_Logo.svg.png" alt="Logo" width="80" height="80">
+
+  <h3 align="center">gitlab-search project</h3>
+
+  <p align="center">
+    Simple API server providing capability to search through given Gitlab instance for any arbitrary text
+  </p>
+</p>
+
+
+
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+* [About the Project](#about-the-project)
+* [Getting Started](#getting-started)
+  * [Run docker image](#run-docker-image)
+  * [Querying API](#querying-API)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
+
+## About The Project
+
+The scope of the project is to simplify searching through (mostly self hosted) instances of Gitlab. Main use cases are searching through all the projects, or the projects satisfying some pattern.
+
+## Getting Started
+
+### Run docker image
+
 ```
-# Run API as a docker image and expose it on port 8080
-$ docker run -e GITLAB_API=XXXXXXXXXXXX/api/v4 -e GITLAB_TOKEN=MY_TOKEN_HERE --rm -p 8080:8080 dodalovic/gitlab-search
-
-# Use any HTTP client to call search API
-$ curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities'--header 'accept: application/json'
+docker run -e GITLAB_API=https://YOUR_SERVER_HERE/api/v4 -e GITLAB_TOKEN=XXXXXXXYYYYYYYY --rm -p 8080:8080 dodalovic/gitlab-search
 ```
 
-## Running the application in dev mode
-You can run your application in dev mode that enables live coding using:
+### Querying API
+
 ```
-./mvnw quarkus:dev -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx
+$ curl --url 'http://localhost:8080/search?searchTerm=SOME_ARBITRARY_TEXT'--header 'accept: application/json'
 ```
 
-## Performing search
-`API` will be available via  `http://localhost:8080/search` 
+<!-- USAGE EXAMPLES -->
 
-Query params: 
+## Usage
+
+API will be available via http://localhost:8080/search
+
+**Query params**:
 
 * `searchTerm` - mandatory, text you want to search for
 * `pattern` - optional - search through projects matching given pattern
 
 An example call:
+
 ```
 curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&pattern=service' \
   --header 'accept: application/json'
@@ -39,19 +83,40 @@ curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&p
 
 will search through all the projects containing service in their name
 
-## Packaging and running the application
-The application is packageable using `./mvnw package`.
-It produces the executable `gitlab-search-1.0.0-SNAPSHOT-runner.jar` file in `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
+## Contributing
 
-The application is now runnable using `java -jar target/gitlab-search-1.0.0-SNAPSHOT-runner.jar -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx`.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## Creating a native executable
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-You can create a native executable using: `./mvnw package -Pnative`.
+## License
 
-Or you can use Docker to build the native executable using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
+Distributed under the MIT License. See `LICENSE` for more information.
 
-You can then execute your binary: `./target/gitlab-search-1.0.0-SNAPSHOT-runner -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx`
+## Contact
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image-guide .
+Dusan Odalovic - [@odalinjo](https://twitter.com/odalinjo) - dodalovic@gmail.com
+
+Project Link: [https://github.com/dodalovic/gitlab-search](https://github.com/dodalovic/gitlab-search)
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/dodalovic/gitlab-search.svg?style=flat-square
+[contributors-url]: https://github.com/dodalovic/gitlab-search/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/dodalovic/gitlab-search.svg?style=flat-square
+[forks-url]: https://github.com/dodalovic/gitlab-search/network/members
+[stars-shield]: https://img.shields.io/github/stars/dodalovic/gitlab-search.svg?style=flat-square
+[stars-url]: https://github.com/dodalovic/gitlab-search/stargazers
+[issues-shield]: https://img.shields.io/github/issues/dodalovic/gitlab-search.svg?style=flat-square
+[issues-url]: https://github.com/dodalovic/gitlab-search/issues
+[license-shield]: https://img.shields.io/github/license/dodalovic/gitlab-search.svg?style=flat-square
+[license-url]: https://github.com/dodalovic/gitlab-search/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/dodalovic/
+[product-screenshot]: images/screenshot.png
