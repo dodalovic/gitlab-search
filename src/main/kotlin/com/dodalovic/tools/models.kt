@@ -27,3 +27,10 @@ data class SearchTerm(
     @field:QueryParam("scope") var scope: String = "blobs",
     @field:QueryParam("ref") var ref: String = "master"
 )
+
+data class ProjectsSearch(
+    @field:QueryParam("private_token") var token: String,
+    @field:QueryParam("search") var search: String,
+    @field:QueryParam("per_page") var perPage: Int = 100,
+    @field:QueryParam("page") var page: Int = 1
+)

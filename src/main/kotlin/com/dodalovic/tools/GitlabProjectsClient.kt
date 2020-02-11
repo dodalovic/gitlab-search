@@ -11,15 +11,20 @@ import javax.ws.rs.core.Response
 
 @Path("/api/v4")
 @RegisterRestClient
-interface GitlabSearchClient {
+interface GitlabProjectsClient {
+
+    @GET
+    @Path("/projects/{project_id}/search/")
+    @Produces("application/json")
+    fun searchProjectBySearchTerm(@BeanParam search: SearchTerm): JsonArray
+
+    @GET
+    @Path("/projects")
+    @Produces("application/json")
+    fun searchAllProjectsByName(@BeanParam search: ProjectsSearch): Response
 
     @GET
     @Path("/projects")
     @Produces("application/json")
     fun getAllProjects(@BeanParam search: AllProjectsRequest): Response
-
-    @GET
-    @Path("/projects/{project_id}/search/")
-    @Produces("application/json")
-    fun searchBySearchTerm(@BeanParam search: SearchTerm): JsonArray
 }
