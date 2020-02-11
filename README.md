@@ -24,8 +24,6 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
 <br />
 <p align="center">
     <img src="GitLab_Logo.svg.png" alt="Logo" width="80" height="80">
@@ -116,15 +114,15 @@ Project Link: [https://github.com/dodalovic/gitlab-search](https://github.com/do
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[contributors-url]: https://github.com/dodalovic/gitlab-search/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/dodalovic/gitlab-search.svg?style=flat-square
+[forks-url]: https://github.com/dodalovic/gitlab-search/network/members
+[stars-shield]: https://img.shields.io/github/stars/dodalovic/gitlab-search.svg?style=flat-square
+[stars-url]: https://github.com/dodalovic/gitlab-search/stargazers
+[issues-shield]: https://img.shields.io/github/issues/dodalovic/gitlab-search.svg?style=flat-square
+[issues-url]: https://github.com/dodalovic/gitlab-search/issues
+[license-shield]: https://img.shields.io/github/license/dodalovic/gitlab-search.svg?style=flat-square
+[license-url]: https://github.com/dodalovic/gitlab-search/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://www.linkedin.com/in/dodalovic/
 [product-screenshot]: images/screenshot.png
