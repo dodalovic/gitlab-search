@@ -33,7 +33,7 @@ class SearchResource {
     ): Response {
         val includeAllProjects =
             projectsSearchPattern == searchThroughAllProjectsQueryParamValue
-        println("Searching through ${if (includeAllProjects) "all" else "services"} projects")
+        println("Searching through ${if (includeAllProjects) "all" else "*$projectsSearchPattern*"} projects")
         val result = mutableListOf<JsonArray>()
         val allProjects = mutableListOf<JsonObject>()
         runBlocking(Dispatchers.IO) {
