@@ -77,11 +77,11 @@ API will be available via http://localhost:8080/search
 An example call:
 
 ```
-curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&pattern=service' \
+curl --url 'http://localhost:8080/search?searchTerm=theTextToSearchFor&pattern=service' \
   --header 'accept: application/json'
 ```
 
-will search through all the projects containing service in their name
+will search through all the projects containing `service` in their name
 
 ## Contributing
 
