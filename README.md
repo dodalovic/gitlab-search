@@ -31,8 +31,6 @@
   </p>
 </p>
 
-
-
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
@@ -53,7 +51,7 @@ The scope of the project is to simplify searching through (mostly self hosted) i
 
 ### Run docker image
 
-```
+```zsh
 docker run \
     -e GITLAB_API=https://YOUR_SERVER_HERE/api/v4 \
     -e GITLAB_TOKEN=XXXXXXXYYYYYYYY \
@@ -63,7 +61,7 @@ docker run \
 
 ### Querying API
 
-```
+```zsh
 $ curl --url 'http://localhost:8080/search?searchTerm=SOME_ARBITRARY_TEXT' \
     --header 'accept: application/json'
 ```
@@ -81,7 +79,7 @@ API will be available via http://localhost:8080/search
 
 An example call:
 
-```
+```zsh
 curl --url 'http://localhost:8080/search?searchTerm=theTextToSearchFor&pattern=service' \
   --header 'accept: application/json'
 ```
