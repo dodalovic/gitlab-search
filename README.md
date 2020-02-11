@@ -1,37 +1,68 @@
-# gitlab-search project
-Simple `API` server providing capability to search through given Gitlab instance for any arbitrary text
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Configuration
-`API` requires two configuration parameters, passed as an environment variables:
-* GITLAB_API, for instance https://my.server.here/api/v4
-* GITLAB_TOKEN
-Your [personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html) with the `api` scope. 
+<br />
+<p align="center">
+    <img src="GitLab_Logo.svg.png" alt="Logo" width="80" height="80">
 
-## Quick run
-The easiest way is to run publicly available docker image:
+  <h3 align="center">gitlab-search project</h3>
+
+  <p align="center">
+    Simple API server providing capability to search through given Gitlab instance for any arbitrary text
+  </p>
+</p>
+
+
+
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
+
+## About The Project
+
+The scope of the project is to simplify searching through (mostly self hosted) instances of Gitlab. Main use cases are searching through all the projects, or the projects satisfying some pattern.
+
+## Getting Started
+
+### Run docker image
+
 ```
-# Run API as a docker image and expose it on port 8080
-$ docker run -e GITLAB_API=XXXXXXXXXXXX/api/v4 -e GITLAB_TOKEN=MY_TOKEN_HERE --rm -p 8080:8080 dodalovic/gitlab-search
-
-# Use any HTTP client to call search API
-$ curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities'--header 'accept: application/json'
+docker run -e GITLAB_API=https://YOUR_SERVER_HERE/api/v4 -e GITLAB_TOKEN=XXXXXXXYYYYYYYY --rm -p 8080:8080 dodalovic/gitlab-search
 ```
 
-## Running the application in dev mode
-You can run your application in dev mode that enables live coding using:
+### Querying API
+
 ```
-./mvnw quarkus:dev -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx
+$ curl --url 'http://localhost:8080/search?searchTerm=SOME_ARBITRARY_TEXT'--header 'accept: application/json'
 ```
 
-## Performing search
-`API` will be available via  `http://localhost:8080/search` 
+<!-- USAGE EXAMPLES -->
+## Usage
 
-Query params: 
+API will be available via http://localhost:8080/search
+
+**Query params**:
 
 * `searchTerm` - mandatory, text you want to search for
 * `pattern` - optional - search through projects matching given pattern
 
 An example call:
+
 ```
 curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&pattern=service' \
   --header 'accept: application/json'
@@ -39,19 +70,22 @@ curl --url 'http://localhost:8080/search?searchTerm=triggerContentCapabilities&p
 
 will search through all the projects containing service in their name
 
-## Packaging and running the application
-The application is packageable using `./mvnw package`.
-It produces the executable `gitlab-search-1.0.0-SNAPSHOT-runner.jar` file in `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
+## Contributing
 
-The application is now runnable using `java -jar target/gitlab-search-1.0.0-SNAPSHOT-runner.jar -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx`.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## Creating a native executable
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-You can create a native executable using: `./mvnw package -Pnative`.
+## License
 
-Or you can use Docker to build the native executable using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
+Distributed under the MIT License. See `LICENSE` for more information.
 
-You can then execute your binary: `./target/gitlab-search-1.0.0-SNAPSHOT-runner -Dgitlab.api=https://my.server.here/api/v4 -Dgitlab.token=xxxxxxxxxxxxxxxxxxxxx`
+## Contact
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image-guide .
+Dusan Odalovic - [@odalinjo](https://twitter.com/odalinjo) - dodalovic@gmail.com
+
+Project Link: [https://github.com/dodalovic/gitlab-search](https://github.com/dodalovic/gitlab-search)
