@@ -40,7 +40,12 @@ class SearchResource {
             val firstPageResponse = if (includeAllProjects) {
                 gitlabProjectsClient.getAllProjects(AllProjectsRequest(apiToken))
             } else {
-                gitlabProjectsClient.searchAllProjectsByName(ProjectsSearch(token = apiToken, search = "-service"))
+                gitlabProjectsClient.searchAllProjectsByName(
+                    ProjectsSearch(
+                        token = apiToken,
+                        search = projectsSearchPattern
+                    )
+                )
             }
             val firstPageProjects = firstPageResponse.readEntity(JsonArray::class.java)
             val projectsJobs = mutableListOf<Deferred<JsonArray>>()
